@@ -34,9 +34,9 @@ public class Stripes {
     randomSeed(seed);
     noiseSeed(seed);
 
-    // "Analogic" color selection...
     this.baseHues = new float[3];
 
+    // "Analogic" color selection...
     this.baseHues[0] = random(0, 360);
     this.baseHues[1] = (this.baseHues[0] - 30) % 360;
     this.baseHues[2] = (this.baseHues[0] + 30) % 360;

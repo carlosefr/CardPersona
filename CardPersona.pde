@@ -43,10 +43,14 @@ Stripes stripes;
 
 
 void setup() {
-  size(1280, 800);
+  size(1024, 500, JAVA2D);
   frameRate(30);
-  
   smooth();
+  
+  // Hide the cursor when in "present/fullscreen" mode...
+  if (frame.isUndecorated()) {
+    noCursor();
+  }
   
   nameFont = loadFont("Verdana-Bold-18.vlw");
   
@@ -80,6 +84,13 @@ void draw() {
   textFont(nameFont);
   textAlign(RIGHT);
   text(cardOwner, width - 30, height - 30);
+}
+
+
+void stop() {
+  card.stop();
+  
+  super.stop();
 }
 
 
