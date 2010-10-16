@@ -28,18 +28,20 @@ public class Stripes {
   private float[] baseHues;
   
   
-  public Stripes(long seed) {
+  public Stripes() {
     this.stripes = new ArrayList<Stripe>();
-    
-    randomSeed(seed);
-    noiseSeed(seed);
-
     this.baseHues = new float[3];
 
+    this.clear();
+  }
+  
+  public void clear() {
     // "Analogic" color selection...
     this.baseHues[0] = random(0, 360);
     this.baseHues[1] = (this.baseHues[0] - 30) % 360;
     this.baseHues[2] = (this.baseHues[0] + 30) % 360;
+    
+    this.stripes.clear();
   }
   
   public void add(float position, char data) {

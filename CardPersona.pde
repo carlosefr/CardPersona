@@ -40,6 +40,7 @@ String cardOwner = "";
 boolean cardPending = true;
 
 Stripes stripes;
+SoundTrack music;
 
 
 void setup() {
@@ -54,6 +55,9 @@ void setup() {
   
   nameFont = loadFont("Verdana-Bold-18.vlw");
   
+  stripes = new Stripes();
+  music = new SoundTrack();
+  
   card = new Serial(this, "/dev/tty.usbserial-A6004nYZ", 9600);
   card.bufferUntil('\n');  // data from the card ends in a newline
   
@@ -63,13 +67,21 @@ void setup() {
 
 void draw() {
   if (cardPending) {
-    stripes = new Stripes(cardData.hashCode());
+    // This makes each card random, but always identical to itself...
+    randomSeed(cardData.hashCode());
+    noiseSeed(cardData.hashCode());
     
     // The initial space between stripes...
     float spacing = width / float(cardData.length()+1);
     
+    stripes.clear();
     for (int i = 0; i < cardData.length(); i++) {
       stripes.add((i+1) * spacing, cardData.charAt(i));
+    }
+
+    music.clear();
+    for (int i = 0; i < cardOwner.length(); i++) {
+      music.add(cardOwner.charAt(i));
     }
     
     cardPending = false;
@@ -84,6 +96,8 @@ void draw() {
   textFont(nameFont);
   textAlign(RIGHT);
   text(cardOwner, width - 30, height - 30);
+  
+  music.step();
 }
 
 
