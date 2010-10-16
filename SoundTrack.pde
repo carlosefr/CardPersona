@@ -30,8 +30,8 @@ public class SoundTrack {
   static private final float NOTE_DENSITY = 0.8;
   static private final int TEMPO_BPM = 420;
   
-  private final float[] pitches = { 62, 64, 60, 48, 55 };  // Close Encounters of the Third Kind...
-  private final float[] instruments = { SoundCipher.ACOUSTIC_GRAND, SoundCipher.ACOUSTIC_GUITAR, SoundCipher.ACOUSTIC_BASS, SoundCipher.TROMBONE };
+  // Close Encounters of the Third Kind...
+  private final float[] pitches = { 62, 64, 60, 48, 55 };
 
   private SoundCipher track;
   private ArrayList<Float> notes;
@@ -41,6 +41,8 @@ public class SoundTrack {
   
   public SoundTrack() {
     this.track = new SoundCipher();
+    this.track.instrument(SoundCipher.ACOUSTIC_GUITAR);
+    
     this.notes = new ArrayList<Float>(80);
     
     this.clear();    
@@ -48,9 +50,8 @@ public class SoundTrack {
 
   public void clear() {
     this.track.stop();
-    this.track.instrument(this.instruments[round(random(this.instruments.length - 1))]);
-
     this.notes.clear();    
+
     this.noteRoot = 0;
     this.noteCounter = 0;
     

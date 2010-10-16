@@ -75,13 +75,11 @@ void draw() {
     float spacing = width / float(cardData.length()+1);
     
     stripes.clear();
+    music.clear();
+
     for (int i = 0; i < cardData.length(); i++) {
       stripes.add((i+1) * spacing, cardData.charAt(i));
-    }
-
-    music.clear();
-    for (int i = 0; i < cardOwner.length(); i++) {
-      music.add(cardOwner.charAt(i));
+      music.add(cardData.charAt(i));
     }
     
     cardPending = false;
