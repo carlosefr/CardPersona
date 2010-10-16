@@ -44,19 +44,26 @@ public class Stripes {
     this.stripes.clear();
   }
   
-  public void add(float position, char data) {
-    // We know that the characters on the card have a limited range...
-    float w = map(data, 32, 96, width/150.0, width/15.0);
-    
+  public void set(String data) {
     // Using HSB makes it easier to control the colors...
     colorMode(HSB, 360.0, 1.0, 1.0);
-    
-    color c = color(this.baseHues[round(noise(data, 0)) * (this.baseHues.length - 1)], noise(data, 1), noise(data, 2));
+
+    // The initial space between stripes...
+    float spacing = width / (data.length() + 1.0);
+
+    for (int i = 0; i < data.length(); i++) {
+      char elem = data.charAt(i);
+      float position = (i+1) * spacing;
+      
+      // We know that the characters on the card have a limited range...
+      float w = map(elem, 32, 96, width/150.0, width/15.0);
+      color c = color(this.baseHues[round(noise(elem, 0)) * (this.baseHues.length - 1)], noise(elem, 1), noise(elem, 2));
+  
+      this.stripes.add(new Stripe(position, w, c, noise(position) >= 0.5 ? 1 : -1));
+    }
 
     // Revert back...
     colorMode(RGB);
-
-    this.stripes.add(new Stripe(position, w, c, noise(position) >= 0.5 ? 1 : -1));
   }
   
   public void update() {
