@@ -53,7 +53,7 @@ void setup() {
     noCursor();
   }
   
-  nameFont = loadFont("Verdana-Bold-18.vlw");
+  nameFont = loadFont("Eurostile-Bold-18.vlw");
   
   stripes = new Stripes();
   music = new SoundTrack();
