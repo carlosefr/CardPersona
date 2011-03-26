@@ -23,6 +23,9 @@
  */
 
 
+import processing.opengl.*;
+import javax.media.opengl.GL;
+
 import processing.serial.*;
 
 
@@ -44,10 +47,16 @@ SoundTrack music;
 
 
 void setup() {
-  size(1024, 500, JAVA2D);
+  size(1024, 500, OPENGL);
   frameRate(30);
   smooth();
-  
+
+  // Force v-sync and anti-aliasing when using OpenGL...
+  if (glRendererEnabled()) {
+    glSetSync(true);
+    glSetSmooth(true);
+  }
+
   // Hide the cursor when in "present/fullscreen" mode...
   if (frame.isUndecorated()) {
     noCursor();
