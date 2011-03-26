@@ -58,7 +58,21 @@ void setup() {
   stripes = new Stripes();
   music = new SoundTrack();
   
-  card = new Serial(this, "/dev/tty.usbserial-A6004nYZ", 9600);
+  String[] ports = Serial.list();
+  String arduino = "";
+  
+  for (int i = 0; i < ports.length; i++) {
+    // Find the first USB serial device (Mac OS X only)...
+    if (ports[i].startsWith("/dev/tty.usbserial-")) {
+      arduino = ports[i];
+      
+      break;
+    }
+  }
+
+  println("Serial device: " + arduino);
+  
+  card = new Serial(this, arduino, 9600);
   card.bufferUntil('\n');  // data from the card ends in a newline
   
   background(bgColor);
