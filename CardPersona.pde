@@ -24,8 +24,6 @@
 
 
 import processing.opengl.*;
-import javax.media.opengl.GL;
-
 import processing.serial.*;
 
 
@@ -45,9 +43,12 @@ boolean cardPending = true;
 Stripes stripes;
 SoundTrack music;
 
+float textOpacity;
+float textPosition;
+
 
 void setup() {
-  size(1024, 500, OPENGL);
+  size(853, 480, OPENGL);
   frameRate(30);
   smooth();
 
@@ -103,6 +104,10 @@ void draw() {
     music.set(cardOwner);
     music.play();  // (non-blocking)
     
+    // Reset the text...
+    textOpacity = 0;
+    textPosition = 30;
+    
     cardPending = false;
   }
   
@@ -111,10 +116,22 @@ void draw() {
   stripes.update();
   stripes.draw();
   
-  fill(fgColor);
+  if (music.playing()) {
+    textOpacity += (255 / frameRate * 6.0);  // fade in...
+  } else {
+    textOpacity -= (255 / frameRate * 6.0);  // fade out...
+  }
+  
+  // Keep the opacity within bounds...
+  textOpacity = constrain(textOpacity, 0, 255);
+  
+  // Slide the text in...
+  textPosition += (width - 30 - textPosition) / 10;
+  
+  fill(fgColor, textOpacity);
   textFont(nameFont);
   textAlign(RIGHT);
-  text(cardOwner, width - 30, height - 30);
+  text(cardOwner, textPosition, height - 30);
 }
 
 
@@ -136,6 +153,14 @@ void serialEvent(Serial card) {
   
   // Signal that there's new card data available...
   cardPending = true;
+}
+
+
+void keyReleased() {
+  // Save a snapshot...
+  if (key == 'c') {
+    saveFrame("CardPersona-" + frameCount + ".png");
+  }
 }
 
 

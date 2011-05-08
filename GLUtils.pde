@@ -40,7 +40,7 @@ void glSetSmooth(boolean enabled) {
 void glSetSync(boolean enabled) {
   PGraphicsOpenGL pgl = (PGraphicsOpenGL)g;
   
-  GL gl = pgl.beginGL();
+  javax.media.opengl.GL gl = pgl.beginGL();
   gl.setSwapInterval(enabled ? 1 : 0);
   pgl.endGL();
 }
