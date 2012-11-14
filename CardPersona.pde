@@ -25,6 +25,7 @@
 
 import processing.opengl.*;
 import processing.serial.*;
+import arb.soundcipher.*;
 
 
 color fgColor = #ffffff;

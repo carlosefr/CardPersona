@@ -24,15 +24,15 @@
 
 
 boolean glRendererEnabled() {
-  return g.getClass().getName().contains("OpenGL");
+  return g.getClass().getName().contains("PGraphics3D");
 }
 
 
 void glSetSmooth(boolean enabled) {
-  hint(DISABLE_OPENGL_2X_SMOOTH);
+  noSmooth();
 
   if (enabled) {    
-    hint(ENABLE_OPENGL_4X_SMOOTH);
+    smooth(4);
   }
 }
 
@@ -40,9 +40,9 @@ void glSetSmooth(boolean enabled) {
 void glSetSync(boolean enabled) {
   PGraphicsOpenGL pgl = (PGraphicsOpenGL)g;
   
-  javax.media.opengl.GL gl = pgl.beginGL();
+  javax.media.opengl.GL gl = pgl.beginPGL().gl;
   gl.setSwapInterval(enabled ? 1 : 0);
-  pgl.endGL();
+  pgl.endPGL();
 }
 
 

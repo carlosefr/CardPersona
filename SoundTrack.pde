@@ -23,9 +23,6 @@
  */
 
 
-import arb.soundcipher.*;
-
-
 public class SoundTrack {
   private final float[] pitches = { 50, 57, 58, 60, 62, 64, 65, 69, 72 };
 
