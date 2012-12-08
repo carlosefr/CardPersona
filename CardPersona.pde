@@ -27,6 +27,8 @@ import processing.opengl.*;
 import processing.serial.*;
 import arb.soundcipher.*;
 
+import java.util.*;
+
 
 color fgColor = #ffffff;
 color bgColor = #222222;
