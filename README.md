@@ -1,4 +1,4 @@
-Experiment in using credit card data as random seed for graphics and sound.
+Experiment in using magnetic card data as random seed for graphics and sound.
 You can get what's needed to run this from:
 
   - http://processing.org
