@@ -1,5 +1,5 @@
-Experiment in using magnetic card data as random seed for graphics and sound.
-You can get what's needed to run this from:
+Experiment in using magnetic card data as random seed for moving graphics
+and sound. You can get what's needed to run this from:
 
   - http://processing.org
   - http://explodingart.com/soundcipher/
