@@ -7,4 +7,4 @@ and sound. You can get what's needed to run this from:
 This requires a card reader. You can make your own with a basic TTL reader
 and an Arduino, using my library which you can get from:
 
-  - http://code.google.com/p/magstripelib/
+  - https://github.com/carlosefr/magstripelib
